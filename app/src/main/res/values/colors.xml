@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="gameViewBackgroundColor">#D2B48C</color>
-    <color name="backgroundColor0">#DEB887</color>
+    <color name="colorPrimary">#5DE2E7</color>
+    <color name="colorPrimaryDark">#060270</color>
+    <color name="colorAccent">#D96088</color>
+    <color name="gameViewBackgroundColor">#87B1D3</color>
+    <color name="backgroundColor0">#878ADE</color>
     <color name="textColor0">#00000000</color>
     <color name="textColor2">#333300</color>
     <color name="textColor4">#333300</color>
@@ -21,5 +21,9 @@
     <color name="backgroundColor1024">#483D8B</color>
     <color name="backgroundColor2048">#4B0082</color>
     <color name="backgroundColorBiggerThan2048">#000000</color>
+        <color name="scoreBackground">#BBADA0</color>
+        <color name="scoreText">#EEE4DA</color>
+        <color name="buttonBackground">#8F7A66</color>
+        <color name="gameBackground">#FAF8EF</color>
 </resources>
 

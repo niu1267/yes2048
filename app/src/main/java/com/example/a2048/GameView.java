@@ -6,9 +6,6 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.GridLayout;
 import android.widget.Toast;
@@ -286,22 +283,18 @@ public class GameView extends GridLayout {
     }
 
     private int GetCardWidth() {
-        //获取屏幕信息
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        //根据布局，GameView是占屏幕宽度的90%，除以4就是卡片边长
+
         return (int)((displayMetrics.widthPixels * 0.9f) / 4);
     }
 
-    /*
-     * 递归随机，玄学复杂度，期望递归次数小于 16 次，偷了个懒
-     * 最好是把可用方块加入到一个列表中，然后在列表中随机
-     */
+
     private void randomCreateCard(int cnt){
         Random random = new Random();
         int r = random.nextInt(4);
         int c = random.nextInt(4);
 
-        //该处已经存在数字，重新随机r, c
+
         if(cards[r][c].getNum() != 0){
             randomCreateCard(cnt);
             return;
@@ -314,43 +307,14 @@ public class GameView extends GridLayout {
 
         cards[r][c].setNum(rand);
 
-        //播放创建动画
-        playCreateAnimation(r, c);
+
 
         if(cnt >= 2){
             randomCreateCard(cnt - 1);
         }
     }
 
-    /*
-     * 播放创建新块动画
-     */
-    private void playCreateAnimation(int r, int c){
-        AnimationSet animationSet = new AnimationSet(true);
 
-        //旋转
-        RotateAnimation anim = new RotateAnimation(0,360,RotateAnimation.RELATIVE_TO_SELF,0.5f, RotateAnimation.RELATIVE_TO_SELF,0.5f);
-        anim.setDuration(250);
-        anim.setRepeatCount(0);
-        anim.setInterpolator(new LinearInterpolator());
-
-        //缩放
-        ScaleAnimation anim2 = new ScaleAnimation(0,1,0,1,
-                Animation.RELATIVE_TO_SELF,0.5f,
-                Animation.RELATIVE_TO_SELF,0.5f
-        );
-        anim2.setDuration(250);
-        anim2.setRepeatCount(0);
-
-        animationSet.addAnimation(anim);
-        animationSet.addAnimation(anim2);
-
-        cards[r][c].startAnimation(animationSet);
-    }
-
-    /*
-     * 播放合并动画
-     */
     private void playMergeAnimation(int r, int c){
         ScaleAnimation anim = new ScaleAnimation(1,1.2f,1,1.2f,
                 Animation.RELATIVE_TO_SELF,0.5f,
@@ -364,4 +328,6 @@ public class GameView extends GridLayout {
         cards[r][c].startAnimation(anim);
     }
 }
+
+
 

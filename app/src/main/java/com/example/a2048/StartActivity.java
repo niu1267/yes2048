@@ -13,11 +13,23 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        Button startButton = findViewById(R.id.button_start_game);
-        startButton.setOnClickListener(new View.OnClickListener() {
+        Button simpleButton = findViewById(R.id.button_start_simple);
+        simpleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StartActivity.this, MainActivity.class);
+                intent.putExtra("mode", "simple");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        Button hardButton = findViewById(R.id.button_start_hard);
+        hardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartActivity.this, MainActivity.class);
+                intent.putExtra("mode", "hard");
                 startActivity(intent);
                 finish();
             }

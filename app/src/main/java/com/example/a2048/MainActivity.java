@@ -2,9 +2,8 @@ package com.example.a2048;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private int highestScore = 0;
 
     public static MainActivity mainActivity;
-
+    private String mode;
     public MainActivity(){
         mainActivity = this;
     }
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         textScore.setText("Score : " + this.score);
         //更新最高分
         updateHighestScore(this.score);
+        checkWinCondition();
     }
 
     private void updateHighestScore(int score){
@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences shp = getSharedPreferences(FILE_NAME, MODE_PRIVATE);
         highestScore = shp.getInt(HIGHEST_SCORE, 0);
         textHighestScore.setText("HighestScore : " + highestScore);
-
+        Intent intent = getIntent();
+        mode = intent.getStringExtra("mode");
         buttonReplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,26 +79,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    private void checkWinCondition() {
+        int winScore = "simple".equals(mode) ? 200 : 500;
+        if (score >= winScore) {
+            // 跳转到胜利界面
+            Intent winIntent = new Intent(MainActivity.this, CongratulationsActivity.class);
+            winIntent.putExtra("finalScore", score);
+            winIntent.putExtra("mode", MODE_APPEND);
+            startActivity(winIntent);
+            finish();
+        }
+    }
     private boolean isExit = false;
-
-    /**
-     * 设置当前屏幕方向为横屏
-     */
-    private void setHorizontalScreen(Activity activity) {
-        if (activity.getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        }
-    }
-
-    /**
-     * 设置当前屏幕方向为竖屏
-     */
-    private void setVerticalScreen(Activity activity) {
-        if (activity.getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-    }
 
     class ExitHandler extends Handler{
         @Override

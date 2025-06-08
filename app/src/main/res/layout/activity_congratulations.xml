@@ -4,38 +4,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:padding="24dp"
     android:background="@color/gameViewBackgroundColor">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
+        android:text="恭喜通关！"
         android:textSize="48sp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:layout_gravity="center"
-        android:paddingBottom="50dp"/>
+        android:paddingBottom="24dp"/>
 
-    <Button
-        android:id="@+id/button_start_simple"
+    <ImageView
+        android:id="@+id/congratsImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/congratulations"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:paddingBottom="24dp"/>
+
+    <TextView
+        android:id="@+id/finalScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="简单模式"
+        android:text="最终得分：0"
         android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"
+        android:paddingBottom="48dp"/>
+
+    <Button
+        android:id="@+id/buttonReplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="再来一局"
+        android:textSize="20sp"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimaryDark"
         android:padding="16dp"
         android:layout_gravity="center"/>
-
-    <Button
-        android:id="@+id/button_start_hard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="困难模式"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"
-        android:background="@color/colorPrimaryDark"
-        android:padding="16dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
 </LinearLayout>
